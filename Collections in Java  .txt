@@ -1,0 +1,11 @@
+Collections in Java : 
+class - collection of instances / template/ Blueprint/user defined data type
+object - instance of class
+constructor - member function of class
+interface - collection of abstract methods
+abstraction - hiding of unnecessary properties from user
+inheritance - reuasbility of code in different classes
+encapsulation - wrapping of data - encapsulate the things in single class
+polymorphism - more than one form - overloading , overriding
+overloading : compile time polymorphism
+overriding : run time polymorphism

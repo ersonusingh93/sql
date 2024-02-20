@@ -1,0 +1,54 @@
+Relational Database Management System : 
+DDL : Data Definition Language - create, alter, drop, truncate
+DML : Data Manipulation Language - insert, update, delete, call, expalin call
+DCL : Data Control Language  - grant , revoke
+TCL : Transaction Control Language - commit, rollback, explain call
+DQL : Data Query Language - select
+
+schemas  - table
+tuples - row
+
+
+A - Atomicity
+C - Consistency
+I - Isolation
+D - Durability
+
+Database : tables - data - organized and unique
+
+Normalization : 
+1NF
+2NF
+3NF
+BCNF
+4NF
+5NF
+6NF
+
+Contraints : 
+primary key - schema - only one
+default
+not null
+check
+unique key - schema - multiple column
+foreign key
+
+attribute : 
+auto_increment - primary key - id - unique
+
+Store Procedure Technique : 
+
+Trigger : 
+insert
+update
+delete
+
+CTE : 
+A Common Table Expression (CTE) is a named result set in a SQL query. CTEs help keep your code organized, and allow you to perform multi-level aggregations on your data, like finding the average of a set of counts.
+
+Data types : 
+Loops : 
+Decision Control Structure : 
+Operators : 
+paramtrized function : 
+

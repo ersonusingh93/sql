@@ -1,0 +1,28 @@
+Larvel Programming : 
+composer  - dependency manager - 
+In Laravel, Composer is a tool used to manage dependencies. Composer helps with the following:
+Declaring libraries: Composer allows you to declare the libraries that your project needs.
+Finding package versions: Composer can find out which versions of packages need to be installed and install them.
+Updating dependencies: You can update all your dependencies in one command. 
+
+composer global require laravel/installer
+
+breeze : 
+Laravel Breeze is a minimal, simple implementation of all of Laravel's authentication features, including login, registration, password reset, email verification, and password confirmation. In addition, Breeze includes a simple "profile" page where the user may update their name, email address, and password.
+
+JetStream
+Laravel Jetstream is a PHP framework that provides application scaffolding for Laravel. It offers a variety of features, including:
+Login
+Registration
+Email verification
+Two-factor authentication
+Session management
+API via Laravel Sanctum
+Team management features 
+
+Artisan is the command line interface included with Laravel. Artisan exists at the root of your application as the artisan script and provides a number of helpful commands that can assist you while you build your application. To view a list of all available Artisan commands, you may use the list command:
+
+MVC : 
+Model
+View 
+Controller

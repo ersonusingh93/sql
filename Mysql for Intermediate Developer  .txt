@@ -1,0 +1,92 @@
+Mysql : Relational Database Management system : 
+ 
+DDL : Data Definition language : create , alter, drop, truncate
+DML : Data Manipulation Language : insert, update, delete, call, explain, lock
+DCL : Data Control Language : grant, revoke
+TCL : Transaction Control Language : Commit, Rollback, save point, set transaction, constriants
+DQL : Data Query Language : select
+
+Constraints : 
+Primary Key - single
+Forein Key
+Not null
+default
+check
+unique - multiple column
+
+
+mapping :
+one to one
+one to many
+many to many
+
+joins 
+inner
+left outer join
+right outer join
+full join
+cross joins
+
+length
+instr(str, "")
+substr(str, index, length)
+
+RelationShip : 
+One to one
+one to many
+many to many
+
+
+Relational Database Management System : 
+Postgre SQL
+MySQL - innodb
+Oracle
+Sql Server
+IBM DB2
+
+SQL - Structured Query Language
+
+
+No SQL : 
+Non Relational Database management system : 
+Mongodb : 
+
+
+Triggers : Store procedure technique
+
+Store Procedure : 
+A stored procedure is a set of Structured Query Language (SQL) statements with an assigned name, which are stored in a relational database management system (RDBMS) as a group, so it can be reused and shared by multiple programs.
+
+Trigger : 
+insert : before insert, after insert
+update : before update, after update
+delete : 
+
+Drop - it will permanently delete the schema or database - it can't be recovered
+
+Truncate - it will truncate the schema : it will delete the tuples present in schema - but structure of schema
+will remains same
+
+aggregate function : 
+sum
+max
+min
+avg
+std
+count
+
+
+DDL : 
+
+DML : 
+
+
+Alter : 
+
+Modify : 
+
+order by
+
+
+group by : 
+

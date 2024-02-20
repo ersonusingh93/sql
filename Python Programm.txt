@@ -1,0 +1,26 @@
+Data types : string, float, int, bool
+Data Structure : list, tuple, set, dictionary
+Operators : 
+Arithmetic
+Logical 
+Relational
+Ternary
+Assignment
+Bitwise
+Looping : 
+while
+for in
+membership operator : 
+in 
+not in
+modules : 
+random
+math : 
+operator
+Permutation and Combinations : 
+Arrangment : Permutation
+n! = n * (n-1) * (n-2) * ................*3*2*1
+5! = 5 * 4 * 3 * 2 * 1 = 120
+ABC
+3! = 3 * 2 * 1 = 6
+
