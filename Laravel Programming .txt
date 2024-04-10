@@ -1,0 +1,157 @@
+Laravel Programming : Framework
+M - Model - Database
+V - View - template
+C - Controller - PHP OOPS
+
+php
+Composer : dependency manager - A Dependency Manager for PHP
+Before creating your first Laravel project, make sure that your local machine has PHP and Composer installed. 
+
+composer global require laravel/installer - installer of laravel
+
+laravel new <project-name> - to create the project
+
+cd myproject
+
+php artisan serve - to run the programm
+
+
+laravel crud with API : 
+laravel new myapp
+cd myapp
+setup database : 
+create model and migration  : 
+php artisan make:model Post -m
+
+open migration write code to create migration: 
+  public function up(): void
+    {
+        Schema::create('posts', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->text('body');
+            $table->timestamps();
+        });
+    }
+
+open Post model : 
+class Post extends Model
+{
+    use HasFactory;
+    protected $table = 'posts';
+    protected $fillable = ['name', 'body'];
+}
+
+php artisan migrate - to create migrations in database
+
+create factory : 
+php artisan make:factory PostFactory
+
+open Post Factory : 
+ public function definition(): array
+    {
+        return [
+            'name' => $this -> faker -> text(10),
+            'body' => $this -> faker -> text(100)
+        ];
+    }
+
+open databaseseeder : 
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\User;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Seed the application's database.
+     */
+    public function run(): void
+    {
+        \App\Models\Post::factory(20)->create();
+    }
+}
+
+php artisan db:seed  - for seeding the database table
+
+Create Controller : 
+php artisan make:controller PostController
+php artisan make:controller PostController -r - with resource
+
+Create resource : 
+php artisan make:resource PostResource - for Json Api
+
+Create route for controller and their methods : 
+api.php : 
+php artisan install:api
+
+<?php
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
+
+Route::get('/posts' ,[PostController::class, 'index']);
+
+Route::post('/post' ,[PostController::class, 'store']);
+
+Route::get('/posts/{id}' ,[PostController::class, 'show']);
+
+Route::put('/posts/{id}' ,[PostController::class, 'update']);
+
+Route::delete('/posts/{id}', [PostController::class, 'delete']);
+
+Start programming in Controller :
+
+PostController.php : 
+<?php
+
+namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+
+use App\Models\Post;
+use App\Http\Resources\PostResource;
+class PostController extends Controller
+{
+    public function index(){
+        $posts = Post :: paginate(10);
+        return PostResource::collection($posts);
+    }
+    public function store(Request $request){
+        $post = new Post();
+        $post -> name = $request -> name;
+        $post -> body = $request -> body;
+        if($post->save()){
+            return new PostResource($post);
+        }
+    }
+    public function show($id){
+        $post = Post::findOrFail($id);
+        return new PostResource($post);
+    }
+    public function update(Request $request, $id){
+        $post = Post::findOrFail($id);
+        $post -> name = $request -> name;
+        $post -> body = $request -> body;
+        if($post->save()){
+            return new PostResource($post);
+        }
+    }
+    public function destroy($id){
+        $post = Post::findOrFail($id);
+        if($post->delete()){
+            return new PostResource($post);
+
+        }
+
+    }
+}
+
