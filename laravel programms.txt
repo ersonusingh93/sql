@@ -1,0 +1,80 @@
+Laravel programming : 
+php artisan serve
+php artisan serve --port=8081
+
+Step 1 : 
+laravel new myapp
+cd myapp
+php artisan migrate
+php artisan serve
+env file : Database setup - port number, database name, password
+
+Step 2 : 
+Routing : 
+php artisan install:api - 
+
+Route::get('/products', function(){
+    return "This is ecommerce";
+});
+
+step 3 : 
+php artisan make:model Product --migration
+
+migration products : 
+    public function up(): void
+    {
+        Schema::create('products', function (Blueprint $table) {
+            $table->id();
+            $table->string("name");
+            $table->string("slug");
+            $table->string("description")->nullable();
+            $table->decimal('price', 5,2);
+            $table->timestamps();
+        });
+    }
+
+php artisan migrate
+
+import model in  api.php : 
+use App\Models\Product;
+
+api.php : 
+// Route::get('/products', function(){
+//     return "This is ecommerce";
+// });
+
+Route::get('/products', function(){
+    return Product::all();
+});
+
+Route::post('/products', function(){
+
+});
+
+Route::post('/products', function(){
+    return Product::create([
+        'name' => "Darshan Jain",
+        'slug' => 'Welcome Darshan',
+        'description' => "This is ecommerce",
+        'price' => '25.65'
+    ]);
+
+});
+
+
+Controller :
+php artisan make:controller ProductController
+
+ProductController.php
+
+
+class ProductController extends Controller
+{
+    public function  index(){
+        return Product::all();
+    }
+    public function store(Request $request){
+        return Product::create($request->all());
+    }
+}
+

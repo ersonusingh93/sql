@@ -1,0 +1,50 @@
+laravel new myapi
+cd myapi
+database setup
+php artisan migrate  - create migrations in database
+create model amd migrations : 
+php artisan make:model Post
+php artisan make:migration posts
+
+php artisan make:model Post -m
+migrations : 
+    public function up(): void
+    {
+        Schema::create('posts', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->text('body');
+            $table->timestamps();
+        });
+    }
+
+Factory
+Faker
+Resources
+
+create factory : 
+php artisan make:factory PostFactory
+  public function definition(): array
+    {
+        return [
+            'title' => $this -> faker->text(10),
+            'body' => $this -> faker ->text(50)
+        ];
+    }
+
+database seeder : 
+public function run(): void
+    {
+        \App\Models\Post::factory(20)->create();
+    }
+
+controllers : 
+php artisan make:controller PostController
+
+Resource : 
+php artisan make:resource PostResource
+
+Routing : api.php
+Route::get('/posts', [PostController::class, 'index']);
+
+https://laravel.com/docs/11.x/collections
