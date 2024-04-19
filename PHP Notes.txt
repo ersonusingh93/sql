@@ -1,0 +1,502 @@
+PHP Array Programms : 
+The array_key_exists() function checks if a specific key exists in an associative array. It returns `true` if the key is found and `false` otherwise.
+
+<?php
+$fruits = [
+    'apple' => 'red',
+    'banana' => 'yellow',
+];
+if (array_key_exists('banana', $fruits)) {
+    echo "The key 'banana' exists in the array.";
+} else {
+    echo "The key 'banana' does not exist in the array.";
+}
+
+Using array_search() and in_array()
+The array_search() function searches for a value in an associative array and returns the corresponding key if found, or false if not found.
+
+<?php
+$colors = [
+    'apple' => 'red',
+    'banana' => 'yellow',
+];
+echo array_search('yellow', $colors); // Print "banana"
+You can also use arrays with more complex data as value:
+
+<?php
+$colors = [
+    'apple' => ['red'],
+    'banana' => 'yellow',
+];
+echo array_search(['red'], $colors); // Print "apple"
+
+In this case I suggest you use the strict comparison mode. It can be requested passing a third boolean parameter to array_search:
+
+echo array_search([‘red’], $colors, true);
+Similar to array_search() is the in_array function that just returns a boolean flag instead of the key of the item.
+
+/*
+ * It also supports strict mode comparison, useful for working with structured data as a value.
+ */
+echo in_array(['red'], $colors, true); // Return "true"
+
+oreach ($colors as $key => $value) {
+    if ($value === $targetValue) {
+        echo "The value {$targetValue} is associated with the key {$key}.";
+        break; // Optional: Stop searching after finding the occurrence.
+    }
+}
+
+The array_filter() function can be used to filter the array and return only elements that pass a test callback.
+
+$colors = [
+    'apple' => 'red',
+    'banana' => 'yellow',
+];
+$filteredArray = array_filter($colors, function ($value) {
+    return $value === 'red';
+});
+/*
+ * It contains just one element: ['apple' => 'red']
+ * ‘banana’ was filtered out.
+ */
+var_dump($filteredArray);
+
+$data = range(1, 200000);
+$inspector->addSegment(function () use ($data) {
+	array_map(function ($item) {
+		return $item * 3;
+	}, $data);
+}, 'array_map');
+$data = range(1, 200000);
+$inspector->addSegment(function () use ($data) {
+	foreach ($data as $item) {
+		$data[$item] = $item * 3;
+	}
+}, 'foreach');
+
+```php
+$users = array(
+  "john" => array("age" => 32, "city" => "London"),
+  "mary" => array("age" => 28, "city" => "Paris"),
+);
+echo $users['mary']['city']; // Outputs "Paris"
+
+```php
+$user = array("name" => "John", "age" => 32, "city" => "London");
+echo $user['name']; // Outputs "John"
+
+```php
+$fruits = array("Apple", "Banana");
+array_push($fruits, "Cherry", "Dragonfruit");
+print_r($fruits); // Outputs Array ( [0] => Apple [1] => Banana [2] => Cherry [3] => Dragonfruit )
+
+```php
+$fruits = array("Apple", "Banana", "Cherry");
+$lastFruit = array_pop($fruits);
+echo $lastFruit; // Outputs "Cherry"
+
+```php
+$fruits = array("Apple", "Banana", "Cherry");
+$firstFruit = array_shift($fruits);
+echo $firstFruit; // Outputs "Apple"
+array_unshift($fruits, "Elderberry", "Fig");
+print_r($fruits); // Outputs Array ( [0] => Elderberry [1] => Fig [2] => Banana [3] => Cherry )
+
+```php
+$numbers = array(5, 3, 9, 1, 4);
+sort($numbers);
+print_r($numbers); // Outputs Array ( [0] => 1 [1] => 3 [2] => 4 [3] => 5 [4] => 9 )
+
+```php
+$numbers = array(1, 2, 3, 4, 5, 6);
+$evenNumbers = array_filter($numbers, function($n) {
+  return $n % 2 == 0;
+});
+
+print_r($evenNumbers)
+
+```php
+$numbers = array(1, 2, 3, 4, 5);
+$squares = array_map(function($n) {
+  return $n ** 2;
+}, $numbers);
+
+print_r($squares); // Outputs Array ( [0] => 1 [1] => 4 [2] => 9 [3] => 16 [4] => 25 )
+
+```php
+$numbers = array(1, 2, 3, 4, 5);
+$sum = array_reduce($numbers, function($carry, $n) {
+  return $carry + $n;
+}, 0);
+
+echo $sum; // Outputs 15
+
+$arr = [1,2,3,4,5];
+$output = [...$arr, ...[10,11,12]];
+print_result($output);
+// ARRAY   : 1,2,3,4,5,10,11,1
+
+$arr = [1,2,3,4,5];
+$output = array_merge($arr, [10,11,12]);
+print_result($output);
+// ARRAY   : 1,2,3,4,5,10,11,12
+
+$arr = [1,2,3,4,5];
+$output = implode(",", $arr);
+print_result($output);
+// STRING  : 1,2,3,4,5
+
+$start = 0;
+$end = 3;
+$arr = [1,2,3,4,5];
+$output = array_slice($arr, $start, $end);
+print_result($output);
+// ARRAY   : 1,2,3
+
+$arr = [1,2,3,4,5, 1,2,3,4,5];
+$element = 4;
+$output = array_search($element, $arr);
+print_result($output);
+// INTEGER : 3
+
+$arr = [1,2,3,4,5, 1,2,3,4,5];
+$element = 4;
+$output = array_search(4, array_reverse($arr, true));
+print_result($output);
+// INTEGER : 8
+
+$arr = [1,2,3,4,5];
+$output = array_walk($arr, function ($element) {
+    $double = $element * 2;
+});
+print_result($output);
+print_result($arr);
+// BOOLEAN : true
+// ARRAY   : 1,2,3,4,5
+
+$arr = [1,2,3,4,5];
+$result = array_reduce($arr, fn($result, $element) => $result && ($element > 0), true);
+print_result($result);
+// BOOLEAN : true
+
+$arr = [1,2,3,4,5];
+$result = array_reduce($arr, fn($result, $element) => $result || ($element >= 5), false);
+print_result($result);
+// BOOLEAN : true
+
+$arr = [1,2,3,4,5];
+$result = array_filter($arr, fn($element) => $element > 3);
+print_result($result);
+// ARRAY   : 4,5
+
+$arr = [1,2,3,4,5];
+$result = array_map(fn($element) => $element + 3, $arr);
+print_result($result);
+// ARRAY   : 4,5,6,7,8
+
+$nestedArray = [1, [2,3], [4,5,6], 7];
+$result = array_reduce($nestedArray, fn($result, $element) => array_merge($result, is_array($element) ? [...$element] : [$element]), []);
+print_result($result);
+// ARRAY   : 1,2,3,4,5,6,7
+
+$arr = [1,2,3,4,5,6,7,8,9];
+$start = 2;
+$count = 6;
+$result = array_replace($arr, array_fill($start, $count, 88));
+print_result($result);
+// ARRAY   : 1,2,88,88,88,88,88,88,9
+
+$arr = [1,2,3,4,5,6,7,8,9];
+$result = array_reduce($arr, fn($result, $element) => $result + $element, 0);
+print_result($result);
+// INTEGER : 45
+
+$arr = [1,2,3,4,5,6,7,8,9];
+$result = array_reduce(array_reverse($arr), fn($result, $element) => $result + $element, 0);
+print_result($result);
+// INTEGER : 45
+
+$arr = [1,2,3,4,5,6,7,8,9];
+$result = array_pop($arr);
+print_result($result);
+print_result($arr);
+// INTEGER : 9
+// ARRAY   : 1,2,3,4,5,6,7,8
+
+$arr = [1,2,3,4,5,6,7,8,9];
+$newElement = 99;
+$result = array_unshift($arr, $newElement);
+print_result($result);
+print_result($arr);
+// INTEGER : 10
+// ARRAY   : 99,1,2,3,4,5,6,7,8,9
+
+$arr = [1,2,3,4,5,6,7,8,9];
+$newElement = 99;
+$result = array_push($arr, 99);
+print_result($result);
+print_result($arr);
+// INTEGER : 10
+// ARRAY   : 1,2,3,4,5,6,7,8,9,9
+
+$arr = [1,2,3,4,5,6,7,8,9];
+$result = array_reverse($arr);
+print_result($result);
+// ARRAY   : 9,8,7,6,5,4,3,2,1
+
+$arr = [5,3,4,1,2,9,7,8,6];
+$result = sort($arr);
+print_result($arr);
+// ARRAY   : 1,2,3,4,5,6,7,8,9
+
+$arr = [1,2,3,4,5,6,7,8,9];
+$start = 4;
+$count = 3;
+$newElements = [70,71];
+$result = array_splice($arr, $start, $count, $newElements);
+print_result($result); // removed elements
+print_result($arr); // changed array
+// ARRAY   : 5,6,7
+
+$arr = [1,2,3,4,5,6,7,8,9];
+$result = implode("", $arr);
+print_result($result);
+// STRING  : 123456789
+
+$arr = [1,2,3,4,5,6,7,8,9];
+$result = count($arr);
+print_result($result);
+// INTEGER : 9
+
+$arr = [1,2,3,4,5,6,7,8,9];
+$result = is_array($arr);
+print_result($result);
+// BOOLEAN : true
+
+$companies = ['facebook', 'twitter', 'google', 'apple'];
+in_array('facebook', $companies);
+//true
+in_array('amazon', $companies);
+//false
+
+$numbers = [1, '2', 3, 4, 5, 6];
+in_array(1, $numbers);
+//true
+in_array(2, $numbers, true);
+//false
+
+$colors = [['green', 'blue'], ['red', 'yellow'], 'black'];
+
+if (in_array(['green', 'blue'], $colors)) {
+    echo "found!";
+}
+//found!
+
+$friends = ['Alice', 'Bob', 'Charlie'];
+
+array_push($friends, 'Dave');
+
+print_r($friends);
+// ['Alice', 'Bob', 'Charlie', 'Dave']
+
+$fruits = ['apple', 'banana', 'orange'];
+
+array_push($fruits, 'kiwi', 'mango', 'Grapefruit');
+
+print_r($fruits);
+//['apple', 'banana', 'orange', 'kiwi', 'mango', 'Grapefruit']
+
+$friends = ['Alice', 'Bob', 'Charlie'];
+
+$friends[] = 'Danny';
+
+print_r($friends);
+
+//['Alice', 'Bob', 'Charlie', 'Danny']
+
+
+$birds = ['sparrow', 'crow', 'pigeon'];
+
+$last_bird = array_pop($birds);
+
+print_r($birds);
+//['sparrow', 'crow']
+
+echo "Removed bird: " . $last_bird;
+//Removed bird: pigeon
+
+$countries = [
+    'USA' => 'United States',
+    'CAN' => 'Canada',
+    'MEX' => 'Mexico',
+    'BRA' => 'Brazil',
+    'ARG' => 'Argentina'
+];
+
+$codes = array_keys($countries);
+
+print_r($codes);
+//['USA', 'CAN', 'MEX', 'BRA', 'ARG']
+
+$countries = [
+    'USA' => 'United States',
+    'CAN' => 'Canada',
+    'MEX' => 'Mexico',
+    'BRA' => 'Brazil',
+    'ARG' => 'Argentina'
+];
+
+$codes = array_keys($countries, 'United States');
+
+print_r($codes);
+//['USA']
+
+$countries = [
+    'one' => 1,
+    'two' => '2',
+    'three' => 3,
+    'four' => 5,
+    'six' => 6
+];
+
+$codes = array_keys($countries, 2, true);
+
+print_r($codes);
+//[]
+
+$countries = [
+    'one' => 1,
+    'two' => '2',
+    'three' => 3,
+    'four' => 5,
+    'six' => 6
+];
+
+$codes = array_keys($countries, '2', true);
+
+print_r($codes);
+//[]
+
+$smartphones = [
+    "Samsung" => "Galaxy S21",
+    "Apple" => "iPhone 12",
+    "Google" => "Pixel 5"
+];
+
+$smartphone_models = array_values($smartphones);
+
+print_r($smartphone_models);
+//['Galaxy S21', 'iPhone 12', 'Pixel 5']
+
+$terrestrial_planets = ['Mercury', 'Venus', 'Earth', 'Mars'];
+
+$gas_giants = ['Jupiter', 'Saturn', 'Uranus', 'Neptune'];
+
+$all_planets = array_merge($terrestrial_planets, $gas_giants);
+
+print_r($all_planets);
+
+
+$indoor_hobbies = ['Reading', 'Drawing', 'Cooking', 'Gaming'];
+
+$outdoor_hobbies = ['Hiking', 'Fishing', 'Camping'];
+
+$social_hobbies = ['Dancing', 'Singing', 'Playing instruments'];
+
+$all_hobbies = array_merge($indoor_hobbies, $outdoor_hobbies, $social_hobbies);
+
+print_r($all_hobbies);
+
+$sports = ['Basketball', 'Football', 'Baseball', 'Soccer', 'Tennis', 'Swimming'];
+
+$slice_sports = array_slice($sports, 0);
+
+print_r($slice_sports);
+
+
+$sports = ['Basketball', 'Football', 'Baseball', 'Soccer', 'Tennis', 'Swimming'];
+
+$middle_sports = array_slice($sports, 2, 2, true);
+
+print_r($middle_sports);
+
+$numbers = [1, 2, 3, 4, 5];
+
+function add_numbers($accumulator, $current_value) {
+     return $accumulator + $current_value;
+}
+
+$sum = array_reduce($numbers, 'add_numbers', 0);
+
+echo $sum; // Output: 15
+
+$numbers = [1, 2, 3, 4, 5];
+
+function add_numbers($accumulator, $current_value) {
+     return $accumulator + $current_value;
+}
+
+$sum = array_reduce($numbers, 'add_numbers', 10);
+
+echo $sum; // Output: 25
+
+function add_words($prev, $next) {
+return $prev . "-" . $next;
+}
+$pest = ["Dog","Cat","Horse"];
+print_r(array_reduce($pest, "add_words", '**'));
+
+//**-Dog-Cat-Horse
+
+
+$oceans = ["Atlantic", "Pacific", "Indian", "Southern", "Arctic"];
+
+$count = count($oceans);
+
+echo "There are $count oceans in the world.";
+
+//There are 5 oceans in the world.
+
+$animals = [
+    ["cat", "dog", "horse"],
+    ["parrot", "eagle", "ostrich"],
+    ["salmon", "tuna", "shark", "octopus"],
+    "tiger"
+];
+
+$count = count($animals, COUNT_RECURSIVE);
+echo "There are $count animals in the zoo.";
+
+//There are 14 animals in the zoo.
+
+$courses = ["Math", "English", "Science", "History"];
+
+$reversed = array_reverse($courses);
+
+print_r($reversed);
+/*
+Array
+(
+    [0] => History
+    [1] => Science
+    [2] => English
+    [3] => Math
+)
+*/
+
+$mountains = ["Everest" => 8848, "K2" => 8611, "Kangchenjunga" => 8586, "Lhotse" => 8516];
+$reversed = array_reverse($mountains, true);
+
+print_r($reversed);
+/*
+[
+    "Lhotse" => 8516,
+    "Kangchenjunga" => 8586,
+    "K2" => 8611,
+    "Everest" => 8848
+];
+*/
+
+
+
